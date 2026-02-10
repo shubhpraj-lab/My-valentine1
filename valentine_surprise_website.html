@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine's Week 💘</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(135deg,#ff4d6d,#ff85a1);
+      color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px
+    }
+    .card{background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:20px;padding:36px 24px;max-width:520px;width:100%;box-shadow:0 20px 40px rgba(0,0,0,.2)}
+    h1{font-family:'Great Vibes',cursive;font-size:3rem;margin-bottom:14px}
+    p{font-size:1.05rem;line-height:1.6;margin-bottom:16px}
+    .emoji{font-size:3.5rem;margin-bottom:10px}
+    button{padding:12px 26px;border-radius:30px;border:none;font-size:1rem;cursor:pointer;margin:8px;transition:.25s}
+    .yes{background:#fff;color:#ff4d6d}
+    .no{background:#000;color:#fff}
+    .ghost{background:transparent;border:1px solid #fff;color:#fff}
+    button:hover{transform:scale(1.05)}
+    footer{margin-top:18px;font-size:.85rem;opacity:.85}
+    .mail-nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+  </style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="card" id="q1">
+  <div class="emoji">💌</div>
+  <h1>Valentine’s Week</h1>
+  <p>Before I go further… I need your honest answer.</p>
+  <p><strong>Are you interested in me? 💖</strong></p>
+  <button class="yes" onclick="yes()">Yes</button>
+  <button class="no" onclick="no1()">No</button>
+</div>
+
+<!-- PAGE 2: NO (1st time) -->
+<div class="card" id="no1" style="display:none">
+  <div class="emoji">😼</div>
+  <h1>Wait—really?</h1>
+  <p>Sometimes the heart clicks late. Wanna rethink once?</p>
+  <button class="yes" onclick="yes()">Yes</button>
+  <button class="no" onclick="no2()">Still No</button>
+</div>
+
+<!-- PAGE 3: NO (2nd time) -->
+<div class="card" id="no2" style="display:none">
+  <div class="emoji">😼💥</div>
+  <h1>Second chances matter</h1>
+  <p>Okay… last gentle nudge. I promise this is the final ask.</p>
+  <button class="yes" onclick="yes()">Yes</button>
+  <button class="no" onclick="no3()">No (Final)</button>
+</div>
+
+<!-- PAGE 4: NO (3rd time – playful, NOT threatening) -->
+<div class="card" id="no3" style="display:none">
+  <div class="emoji">😼⚠️</div>
+  <h1>Playful Warning 😏</h1>
+  <p>No danger here—just a dramatic moment:</p>
+  <p><em>If you say no again, I’ll keep liking you quietly… and you’ll miss six sweet Valentine letters.</em></p>
+  <button class="ghost" onclick="backToAsk()">Try Again 🔁</button>
+</div>
+
+<!-- PAGE YES: MAILS HUB -->
+<div class="card" id="yes" style="display:none">
+  <div class="emoji">❤️‍🔥</div>
+  <h1>Six Letters for You</h1>
+  <p>One for each day of Valentine’s week. Read them slowly.</p>
+  <div class="mail-nav">
+    <button class="ghost" onclick="mail(1)">💌 Rose</button>
+    <button class="ghost" onclick="mail(2)">🍫 Propose</button>
+    <button class="ghost" onclick="mail(3)">🧸 Teddy</button>
+    <button class="ghost" onclick="mail(4)">🤝 Promise</button>
+    <button class="ghost" onclick="mail(5)">💋 Kiss</button>
+    <button class="ghost" onclick="mail(6)">❤️ Valentine</button>
+  </div>
+  <footer>— Yours, Shubham</footer>
+</div>
+
+<!-- MAIL PAGES -->
+<div class="card" id="m1" style="display:none"><div class="emoji">🌹</div><h1>Rose Day</h1><p>If love had a color, it would blush when it sees you. This rose isn’t about perfection—it’s about choosing you.</p><button class="ghost" onclick="backYes()">Back</button></div>
+<div class="card" id="m2" style="display:none"><div class="emoji">🍫</div><h1>Propose Day</h1><p>I don’t promise fairytales. I promise effort, honesty, and showing up—every day.</p><button class="ghost" onclick="backYes()">Back</button></div>
+<div class="card" id="m3" style="display:none"><div class="emoji">🧸</div><h1>Teddy Day</h1><p>On days the world feels heavy, I want to be the place you feel light.</p><button class="ghost" onclick="backYes()">Back</button></div>
+<div class="card" id="m4" style="display:none"><div class="emoji">🤝</div><h1>Promise Day</h1><p>I promise respect, patience, and a love that grows—not rushes.</p><button class="ghost" onclick="backYes()">Back</button></div>
+<div class="card" id="m5" style="display:none"><div class="emoji">💋</div><h1>Kiss Day</h1><p>A kiss isn’t lips—it’s trust. And I’d protect that trust.</p><button class="ghost" onclick="backYes()">Back</button></div>
+<div class="card" id="m6" style="display:none"><div class="emoji">❤️</div><h1>Valentine’s Day</h1><p>Choosing you is my favorite decision. Today—and every day.</p><button class="ghost" onclick="backYes()">Back</button></div>
+
+<script>
+  const ids=['q1','no1','no2','no3','yes','m1','m2','m3','m4','m5','m6'];
+  const show=id=>ids.forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');
+  const yes=()=>show('yes');
+  const no1=()=>show('no1');
+  const no2=()=>show('no2');
+  const no3=()=>show('no3');
+  const backToAsk=()=>show('q1');
+  const mail=n=>show('m'+n);
+  const backYes=()=>show('yes');
+</script>
+
+</body>
+</html>
